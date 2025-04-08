@@ -60,6 +60,24 @@
       font-weight: bold;
       color: var(--secondary-color);
       margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover::after {
+      transform: translateX(0);
     }
     
     .nav-links {
@@ -73,13 +91,32 @@
       color: var(--text-primary);
       text-decoration: none;
       font-size: 16px;
-      transition: color 0.3s;
+      transition: all 0.3s;
       white-space: nowrap;
       padding: 5px;
+      position: relative;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
     
     .nav-links a:hover {
       color: var(--secondary-color);
+    }
+    
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
     
     .mobile-menu-btn {
@@ -134,10 +171,29 @@
       transition: all 0.3s;
       text-decoration: none;
       display: inline-block;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(100, 255, 218, 0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    
+    .btn:hover::before {
+      transform: translateX(0);
     }
     
     .btn:hover {
-      background-color: rgba(100, 255, 218, 0.1);
       transform: translateY(-3px);
     }
     
@@ -152,6 +208,7 @@
       display: flex;
       align-items: center;
       white-space: nowrap;
+      position: relative;
     }
     
     .section-title::after {
@@ -178,11 +235,19 @@
       padding: 8px 16px;
       border-radius: 4px;
       font-size: 14px;
-      transition: transform 0.3s;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .skill-tag.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .skill-tag:hover {
       transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(100, 255, 218, 0.1);
     }
     
     .projects-grid {
@@ -196,14 +261,23 @@
       background-color: var(--card-bg);
       border-radius: 5px;
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: all 0.4s;
       height: 100%;
       display: flex;
       flex-direction: column;
+      opacity: 0;
+      transform: translateY(30px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
     }
     
     .project-image {
@@ -215,6 +289,24 @@
       justify-content: center;
       color: var(--secondary-color);
       font-size: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    
+    .project-card:hover .project-image::before {
+      transform: translateX(0);
     }
     
     .project-content {
@@ -228,6 +320,23 @@
       color: var(--text-primary);
       font-size: 20px;
       margin-bottom: 10px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .project-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transition: width 0.3s ease;
+    }
+    
+    .project-card:hover .project-title::after {
+      width: 100px;
     }
     
     .project-description {
@@ -253,13 +362,37 @@
       padding: 30px;
       border-radius: 4px;
       margin-bottom: 30px;
-      transition: transform 0.3s;
+      transition: all 0.4s;
       position: relative;
       width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .experience-item.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .experience-item:hover {
       transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background-color: var(--secondary-color);
+      transition: height 0.4s ease;
+    }
+    
+    .experience-item:hover::before {
+      height: 100%;
     }
     
     .experience-header {
@@ -295,6 +428,15 @@
       position: relative;
       padding-left: 25px;
       color: var(--text-secondary);
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+      transition-delay: calc(0.05s * var(--item-index, 0));
+    }
+    
+    .experience-item.visible .responsibilities li {
+      opacity: 1;
+      transform: translateX(0);
     }
     
     .responsibilities li::before {
@@ -317,6 +459,20 @@
       padding: 5px 10px;
       background-color: rgba(100, 255, 218, 0.1);
       border-radius: 3px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      transition-delay: calc(0.05s * var(--tech-index, 0));
+    }
+    
+    .experience-item.visible .tech {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tech:hover {
+      background-color: rgba(100, 255, 218, 0.2);
+      color: var(--text-primary);
     }
     
     .certifications {
@@ -329,20 +485,47 @@
       background-color: var(--card-bg);
       padding: 25px;
       border-radius: 4px;
-      transition: transform 0.3s;
+      transition: all 0.4s;
       display: flex;
       flex-direction: column;
       height: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .certification-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .certification-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+      background-color: rgba(17, 34, 64, 0.9);
     }
     
     .certification-title {
       color: var(--text-primary);
       font-size: 18px;
       margin-bottom: 10px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .certification-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--secondary-color);
+      transition: width 0.3s ease;
+    }
+    
+    .certification-card:hover .certification-title::after {
+      width: 100%;
     }
     
     .certification-date {
@@ -355,6 +538,20 @@
       background-color: var(--card-bg);
       padding: 30px;
       border-radius: 4px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+    
+    .education-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .education-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
     }
     
     .education-title {
@@ -386,11 +583,19 @@
       align-items: center;
       color: var(--text-secondary);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .contact-item.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .contact-item:hover {
       color: var(--secondary-color);
+      transform: translateY(-3px);
     }
     
     .icon {
@@ -408,21 +613,33 @@
     }
     
     /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulseHighlight {
+      0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(100, 255, 218, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
     }
     
     .animate-fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
       opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
     }
     
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-    .delay-5 { animation-delay: 0.5s; }
+    .animate-fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     
     /* Responsive Design */
     @media (max-width: 768px) {
@@ -488,9 +705,64 @@
         padding: 20px;
       }
     }
+    
+    /* Loading animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loading-overlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(100, 255, 218, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--secondary-color);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Typing effect */
+    .typing-effect {
+      display: inline-block;
+      position: relative;
+    }
+    
+    .typing-effect::after {
+      content: '|';
+      position: absolute;
+      right: -5px;
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  
   <header>
     <div class="container">
       <nav>
@@ -510,18 +782,18 @@
   
   <main class="container">
     <section class="hero" id="about">
-      <div class="animate-fade-in delay-1">
-        <div class="small-heading">Hi, my name is</div>
-        <h1 class="big-heading">Abhishek Kumar.</h1>
-        <h2 class="subtitle">I build data pipelines and cloud infrastructures.</h2>
-        <p>I'm a Data Engineer with over 2.5+ years of experience designing and optimizing scalable data platforms and pipelines. I streamline workflows, improve data reliability, and reduce operational overhead.</p>
+      <div class="animate-fade-in">
+        <div class="small-heading typing-effect" id="greeting">Hi, my name is</div>
+        <h1 class="big-heading" id="name"></h1>
+        <h2 class="subtitle" id="tagline"></h2>
+        <p id="bio"></p>
         <a href="#contact" class="btn">Get In Touch</a>
       </div>
     </section>
     
     <section id="skills">
       <h2 class="section-title animate-fade-in">Skills</h2>
-      <div class="skills animate-fade-in delay-1">
+      <div class="skills">
         <div class="skill-tag">Snowflake</div>
         <div class="skill-tag">SQL</div>
         <div class="skill-tag">Palantir Foundry</div>
@@ -551,7 +823,7 @@
     <section id="projects">
       <h2 class="section-title animate-fade-in">Featured Projects</h2>
       <div class="projects-grid">
-        <div class="project-card animate-fade-in delay-1">
+        <div class="project-card">
           <div class="project-image">Kafka Stream</div>
           <div class="project-content">
             <h3 class="project-title">Real-Time Retail Analytics Pipeline</h3>
@@ -565,7 +837,7 @@
           </div>
         </div>
         
-        <div class="project-card animate-fade-in delay-2">
+        <div class="project-card">
           <div class="project-image">Data Lake</div>
           <div class="project-content">
             <h3 class="project-title">Enterprise Data Lake Architecture</h3>
@@ -579,7 +851,7 @@
           </div>
         </div>
         
-        <div class="project-card animate-fade-in delay-3">
+        <div class="project-card">
           <div class="project-image">ML Pipelines</div>
           <div class="project-content">
             <h3 class="project-title">ML Model Pipeline Automation</h3>
@@ -595,7 +867,7 @@
       </div>
       
       <div class="projects-grid">
-        <div class="project-card animate-fade-in delay-3">
+        <div class="project-card">
           <div class="project-image">Event Processing</div>
           <div class="project-content">
             <h3 class="project-title">Healthcare Event Processing System</h3>
@@ -609,7 +881,7 @@
           </div>
         </div>
         
-        <div class="project-card animate-fade-in delay-4">
+        <div class="project-card">
           <div class="project-image">Cost Optimization</div>
           <div class="project-content">
             <h3 class="project-title">Snowflake Cost Optimizer</h3>
@@ -623,7 +895,7 @@
           </div>
         </div>
         
-        <div class="project-card animate-fade-in delay-5">
+        <div class="project-card">
           <div class="project-image">IaC Automation</div>
           <div class="project-content">
             <h3 class="project-title">Infrastructure as Code Framework</h3>
@@ -643,7 +915,7 @@
     <section id="experience">
       <h2 class="section-title animate-fade-in">Professional Experience</h2>
       
-      <div class="experience-item animate-fade-in delay-1">
+      <div class="experience-item">
         <div class="experience-header">
           <div>
             <h3 class="job-title">Data Engineer <span class="company">@Factspan</span></h3>
@@ -652,170 +924,21 @@
           <div class="duration">July 2024 - Present</div>
         </div>
         <ul class="responsibilities">
-          <li>Designed and implemented real-time data ingestion pipelines using <strong>Apache Kafka</strong>, extracting data from the Dynatrace API and loading it into <strong>BigQuery</strong> for dynamic dashboard tracking.</li>
-          <li>Transitioned pipeline architecture from Python scripts to <strong>Kafka-based Maven microservices</strong>, enhancing scalability and reducing latency.</li>
-          <li>Enabled real-time monitoring and analysis of critical system metrics, improving operational visibility and issue resolution for stakeholders.</li>
+          <li style="--item-index: 1">Designed and implemented real-time data ingestion pipelines using <strong>Apache Kafka</strong>, extracting data from the Dynatrace API and loading it into <strong>BigQuery</strong> for dynamic dashboard tracking.</li>
+          <li style="--item-index: 2">Transitioned pipeline architecture from Python scripts to <strong>Kafka-based Maven microservices</strong>, enhancing scalability and reducing latency.</li>
+          <li style="--item-index: 3">Enabled real-time monitoring and analysis of critical system metrics, improving operational visibility and issue resolution for stakeholders.</li>
         </ul>
         <div class="tech-stack">
-          <span class="tech">Apache Kafka</span>
-          <span class="tech">Python</span>
-          <span class="tech">Java</span>
-          <span class="tech">BigQuery</span>
-          <span class="tech">Dynatrace API</span>
-          <span class="tech">Postman</span>
+          <span class="tech" style="--tech-index: 1">Apache Kafka</span>
+          <span class="tech" style="--tech-index: 2">Python</span>
+          <span class="tech" style="--tech-index: 3">Java</span>
+          <span class="tech" style="--tech-index: 4">BigQuery</span>
+          <span class="tech" style="--tech-index: 5">Dynatrace API</span>
+          <span class="tech" style="--tech-index: 6">Postman</span>
         </div>
       </div>
       
-      <div class="experience-item animate-fade-in delay-2">
+      <div class="experience-item">
         <div class="experience-header">
           <div>
-            <h3 class="job-title">Data Platform Engineer (POC/POV) <span class="company">@Factspan</span></h3>
-            <div>Client: American Departmental Store</div>
-          </div>
-          <div class="duration">May 2024 - June 2024</div>
-        </div>
-        <ul class="responsibilities">
-          <li><strong>Migrated Jenkins pipelines</strong> to GitLab CI/CD, ensuring <strong>optimized and secure workflows</strong>.</li>
-          <li>Assisted in building a framework to <strong>automate Jenkins-to-GitLab YAML migration</strong>, accelerating transitions and minimizing errors.</li>
-          <li><strong>Enhanced pipeline efficiency</strong> by implementing GitLab <strong>optimizations, secrets management, and automated code checks</strong>, improving <strong>production stability</strong>.</li>
-          <li>Collaborated with teams to design a scalable CI/CD process, ensuring smooth deployment of microservices.</li>
-        </ul>
-        <div class="tech-stack">
-          <span class="tech">Jenkins</span>
-          <span class="tech">GitLab CI/CD</span>
-          <span class="tech">Python</span>
-          <span class="tech">Docker</span>
-        </div>
-      </div>
-      
-      <div class="experience-item animate-fade-in delay-3">
-        <div class="experience-header">
-          <div>
-            <h3 class="job-title">Data Engineer <span class="company">@Factspan</span></h3>
-            <div>Client: American Healthcare Company</div>
-          </div>
-          <div class="duration">October 2023 - April 2024</div>
-        </div>
-        <ul class="responsibilities">
-          <li><strong>Implemented health checks</strong> for 70+ datasets, enhancing <strong>data integrity</strong> and <strong>pipeline reliability</strong>.</li>
-          <li>Designed an <strong>automated email notification system</strong> for data loads, reducing manual effort and enabling <strong>real-time monitoring</strong>.</li>
-          <li><strong>Resolved a critical write-back issue</strong>, ensuring <strong>consistent data availability</strong> for downstream analytics.</li>
-          <li><strong>Optimized workflows</strong>, improving <strong>pipeline performance</strong> and scalability.</li>
-        </ul>
-        <div class="tech-stack">
-          <span class="tech">Palantir Foundry</span>
-          <span class="tech">Snowflake</span>
-          <span class="tech">Azure</span>
-          <span class="tech">Python</span>
-        </div>
-      </div>
-      
-      <div class="experience-item animate-fade-in delay-4">
-        <div class="experience-header">
-          <div>
-            <h3 class="job-title">Data Engineer <span class="company">@Factspan</span></h3>
-            <div>Client: American Healthcare Company</div>
-          </div>
-          <div class="duration">March 2023 - October 2023</div>
-        </div>
-        <ul class="responsibilities">
-          <li>Designed and implemented 40+ end-to-end data pipelines, ensuring seamless ingestion, transformation, and loading into Snowflake for data science and BI teams.</li>
-          <li>Optimized <strong>resource utilization</strong>, reducing Snowflake warehouse costs by <strong>40%</strong>.</li>
-          <li>Migrated 20+ pipelines from <strong>Kubeflow 1.2 to 1.7</strong>, updating Kubernetes manifests and configurations.</li>
-          <li>Automated 90% of pipeline schedules by identifying dependencies, reducing manual interventions.</li>
-          <li>Developed shell scripts to eliminate pre-execution manual tasks, improving operational efficiency.</li>
-          <li>Built a robust pipeline to integrate SharePoint data into Azure Blob and Snowflake, enabling real-time data access for BI teams.</li>
-        </ul>
-        <div class="tech-stack">
-          <span class="tech">Kubernetes (AKS)</span>
-          <span class="tech">Docker</span>
-          <span class="tech">Snowflake</span>
-          <span class="tech">Python</span>
-          <span class="tech">Azure</span>
-          <span class="tech">GitLab</span>
-          <span class="tech">Jenkins</span>
-          <span class="tech">ServiceNow</span>
-        </div>
-      </div>
-      
-      <div class="experience-item animate-fade-in delay-5">
-        <div class="experience-header">
-          <div>
-            <h3 class="job-title">Data Engineer <span class="company">@Factspan</span></h3>
-            <div>Client: American Healthcare Company</div>
-          </div>
-          <div class="duration">November 2022 - January 2023</div>
-        </div>
-        <ul class="responsibilities">
-          <li>Monitored daily data loads, proactively identifying and resolving failures using log analysis.</li>
-          <li>Automated Snowflake table backups with Python, eliminating manual efforts.</li>
-          <li>Developed purge scripts and parameterized SQL queries for 90+ tables, enhancing operational efficiency.</li>
-        </ul>
-        <div class="tech-stack">
-          <span class="tech">Snowflake</span>
-          <span class="tech">Python</span>
-          <span class="tech">SQL</span>
-          <span class="tech">AWS</span>
-        </div>
-      </div>
-    </section>
-    
-    <section id="certifications">
-      <h2 class="section-title animate-fade-in">Certifications</h2>
-      <div class="certifications">
-        <div class="certification-card animate-fade-in delay-1">
-          <h3 class="certification-title">SnowPro Core Certified (Snowflake)</h3>
-          <div class="certification-date">June 2024</div>
-        </div>
-        <div class="certification-card animate-fade-in delay-2">
-          <h3 class="certification-title">Airflow Fundamentals</h3>
-          <div class="certification-date">March 2024</div>
-        </div>
-        <div class="certification-card animate-fade-in delay-3">
-          <h3 class="certification-title">PCEP — Certified Entry-Level Python Programmer</h3>
-          <div class="certification-date">February 2024</div>
-        </div>
-        <div class="certification-card animate-fade-in delay-4">
-          <h3 class="certification-title">Azure Fundamentals (AZ-900)</h3>
-          <div class="certification-date">August 2023</div>
-        </div>
-        <div class="certification-card animate-fade-in delay-5">
-          <h3 class="certification-title">AWS Certified Cloud Practitioner</h3>
-          <div class="certification-date">January 2023</div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="education">
-      <h2 class="section-title animate-fade-in">Education</h2>
-      <div class="education-section animate-fade-in delay-1">
-        <h3 class="education-title">M.Tech — Masters in Technology (2020 - 2022)</h3>
-        <div class="education-subtitle">NIT Surat (Sardar Vallabhbhai National Institute of Technology, Surat)</div>
-        <div class="education-details">Course: CAD / CAM | CGPA: 8.55</div>
-      </div>
-    </section>
-    
-    <section id="contact">
-      <h2 class="section-title animate-fade-in">Get In Touch</h2>
-      <div class="contact-info animate-fade-in delay-1">
-        <a href="mailto:wankamemo@gmail.com" class="contact-item">
-          <span class="icon">✉️</span>
-          wankamemo@gmail.com
-        </a>
-        <a href="tel:+919191919191" class="contact-item">
-          <span class="icon">📱</span>
-          +91 9191919191
-        </a>
-        <a href="https://www.linkeasdasdasdasd170262249/" target="_blank" class="contact-item">
-          <span class="icon">👥</span>
-          LinkedIn
-        </a>
-      </div>
-    </section>
-  </main>
-  
-  <footer>
-    <div class="container">
-      <p>© 2025 Abhishek Kumar. All Rights Reserved.</p>
-    </div>
-  </footer
+            <h3 class="job
